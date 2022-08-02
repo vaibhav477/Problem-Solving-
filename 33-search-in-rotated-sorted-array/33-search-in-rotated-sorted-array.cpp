@@ -3,7 +3,7 @@ public:
     int search(vector<int>& arr, int k) {
         int i = 0, j = size(arr) - 1, m;
         while(i<=j){
-            m = (i + j) >> 1;
+            m = (i + j) / 2;
             if(arr[m]==k){
                 return m;
             }
