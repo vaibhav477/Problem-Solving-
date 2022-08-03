@@ -23,7 +23,7 @@ public:
         int n = matrix.size();
         int start = matrix[0][0], end = matrix[n-1][n-1];
         
-        while(start < end){
+        while(start <= end){
             int mid = start + (end-start)/2;
             int rank = rank_cal(matrix, mid);
             
@@ -31,7 +31,7 @@ public:
                 start = mid+1;
             }
             else{
-                end = mid;
+                end = mid-1;
             }
         }
         
