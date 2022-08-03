@@ -1,34 +1,41 @@
 class Solution {
 public:
-    int kthSmallest(vector<vector<int>>& matrix, int k) {
-        // Store value of matrix size
+    
+    int rank_cal(vector<vector<int>>& matrix, int& mid){
         int n = matrix.size();
+        int count = 0, i = n-1, j = 0;
         
-        int low = matrix[0][0]; // first element
-        int high = matrix[n-1][n-1]; // Last element
-        
-        int mid, temp, count;
-        
-        while(low < high){
-            mid = low + (high-low)/2;
-            temp = n - 1;
-            count = 0;
-            
-            // For each row count the elements that are smaller than mid
-            for(int i = 0; i < n; i++){
-                
-                while(temp >= 0 && matrix[i][temp] > mid){
-                    temp--;
-                }
-                count+= (temp+1);
+        while(i >= 0 && j < n){
+            if(matrix[i][j] > mid){
+                i--;
             }
-            
-            if(count < k){
-                low = mid + 1;
-            }else{
-                high = mid;
+            else{
+                count += (i+1);
+                j++;
             }
         }
-        return low;
+        
+        return count;
+    }
+    
+    
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        int n = matrix.size();
+        int start = matrix[0][0], end = matrix[n-1][n-1];
+        
+        while(start < end){
+            int mid = start + (end-start)/2;
+            int rank = rank_cal(matrix, mid);
+            
+            if(rank < k){
+                start = mid+1;
+            }
+            else{
+                end = mid;
+            }
+        }
+        
+        return start;
     }
 };
+
