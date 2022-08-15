@@ -9,7 +9,7 @@ public:
         
         vector<int> ans;
         
-        for(int i = 0; i < (n+1-(k*l)); i++){
+        for(int i = 0; i < (n+1-(l*k)); i++){
             map<string, int> help;
             for(int j = i; j < i+(l*k); j += k){
                 string temp = s.substr(j , k);
