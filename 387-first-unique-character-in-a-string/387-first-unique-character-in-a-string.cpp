@@ -9,8 +9,9 @@ public:
         
         int ans = -1;
         for(int i = 0; i < n; i++){
-            if(mp[s[i]] == 1 && ans == -1){
+            if(mp[s[i]] == 1){
                 ans = i;
+                break;
             }
         }
         
